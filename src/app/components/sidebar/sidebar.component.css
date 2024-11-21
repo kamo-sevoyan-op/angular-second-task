@@ -1,5 +1,6 @@
 mat-sidenav {
   background-color: #eeeeee;
+  border-right-style: none;
 }
 
 .mat-sidenav {
