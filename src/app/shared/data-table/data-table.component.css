@@ -40,16 +40,13 @@ tr:not(.mat-mdc-header-row) {
   height: 5rem;
 }
 
-.mat-column-module {
+.mat-column-module,
+.mat-column-country {
   text-align: center;
 }
 
 .mat-column-actions:not(.mat-mdc-header-cell) {
   text-align: right;
-}
-
-.mat-column-country {
-  text-align: center;
 }
 
 .mat-mdc-header-row {
@@ -68,13 +65,8 @@ tr:not(.mat-mdc-header-row) {
   background-color: transparent;
 }
 
-.mat-mdc-cell {
-  border-bottom: 2px solid #eeeeee;
-}
-.mat-mdc-cell:first-child {
-  border-left: 2px solid #eeeeee;
-}
-
+.mat-mdc-cell,
+.mat-mdc-cell:first-child,
 .mat-mdc-cell:last-child {
-  border-right: 2px solid #eeeeee;
+  border-bottom: 2px solid #eeeeee;
 }
