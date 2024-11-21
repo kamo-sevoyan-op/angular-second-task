@@ -43,10 +43,14 @@
 </table>
 
 <mat-paginator
-  [length]="100"
-  [pageSize]="5"
-  [pageSizeOptions]="[5, 10, 20]"
   showFirstLastButtons
-  aria-label="Rows perpage"
+  aria-label="Select page"
+  [pageSize]="5"
+  appCustomPagination
+  [length]="dataSource.data.length"
+  [appCustomLength]="dataSource.data.length"
+  [renderButtonsNumber]="1"
+  [selectConfig]="customSelectConfig"
+  [pageSizeOptions]="[5, 10]"
 >
 </mat-paginator>

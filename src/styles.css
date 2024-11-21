@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.g-bubble-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.g-bubble {
+  display: flex;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  align-items: center;
+  justify-content: center;
+  color: #aaaaaa;
+
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  background-color: transparent;
+}
+
+.g-bubble:not(.g-bubble__active):hover {
+  background-color: #b6b6b6;
+  color: white;
+}
+
+.g-bubble__active {
+  background-color: black;
+  color: white;
+}
+
+.g-bubble__disabled {
+  cursor: default;
+  opacity: 0.5;
+  pointer-events: none;
+  color: 919191;
+}

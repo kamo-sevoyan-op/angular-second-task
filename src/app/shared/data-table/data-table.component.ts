@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RulesService } from '../../services/rules.service';
 import { CommonModule } from '@angular/common';
+import { CustomPaginationDirective } from '../../directives/custom-pagination.directive';
 import { Rule } from '../../models/rule.model';
 
 @Component({
