@@ -1,3 +1,7 @@
+mat-sidenav {
+  background-color: #eeeeee;
+}
+
 .mat-sidenav {
   height: auto;
   width: fit-content;
