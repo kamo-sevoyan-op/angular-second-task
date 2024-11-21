@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  inject,
+  Input,
   TrackByFunction,
   ViewChild,
 } from '@angular/core';
@@ -15,7 +15,6 @@ import {
 } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RulesService } from '../../services/rules.service';
 import { CommonModule } from '@angular/common';
 import { CustomPaginationDirective } from '../../directives/custom-pagination.directive';
 import { Rule } from '../../models/rule.model';
@@ -35,21 +34,12 @@ import { Rule } from '../../models/rule.model';
   styleUrl: './data-table.component.css',
 })
 export class DataTableComponent implements AfterViewInit {
-  rulesService = inject(RulesService);
-  dataSource = new MatTableDataSource(this.rulesService.getData());
+  @Input() dataSource!: MatTableDataSource<any, MatPaginator>;
+  @Input() selectedColumns!: string[];
+  @Input() columnNames!: string[];
+
   @ViewChild(MatPaginator) paginator?: MatPaginator;
-
-  readonly selectedColumns = ['name', 'module', 'country', 'status', 'actions'];
-
-  readonly columnNames = [
-    'Rule name',
-    'Module',
-    'Country',
-    'Status',
-    'Actions',
-  ];
-
-  identity: TrackByFunction<Rule> = (_, item: Rule) => item.id;
+  identity: TrackByFunction<any> = (_, item: any) => item.id;
 
   constructor() {
     this.paginator = new MatPaginator(
