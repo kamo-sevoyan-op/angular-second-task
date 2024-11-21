@@ -67,3 +67,14 @@ tr:not(.mat-mdc-header-row) {
 .mat-mdc-paginator {
   background-color: transparent;
 }
+
+.mat-mdc-cell {
+  border-bottom: 2px solid #eeeeee;
+}
+.mat-mdc-cell:first-child {
+  border-left: 2px solid #eeeeee;
+}
+
+.mat-mdc-cell:last-child {
+  border-right: 2px solid #eeeeee;
+}
