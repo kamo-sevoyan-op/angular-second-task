@@ -63,3 +63,7 @@ tr:not(.mat-mdc-header-row) {
 .mat-mdc-header-cell:last-child {
   border-radius: 0 0.5rem 0 0;
 }
+
+.mat-mdc-paginator {
+  background-color: transparent;
+}
