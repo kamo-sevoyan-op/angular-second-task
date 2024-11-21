@@ -5,7 +5,7 @@ mat-sidenav {
 
 .mat-sidenav {
   height: auto;
-  width: fit-content;
+  width: 15rem;
   padding-top: 2rem;
 
   flex-direction: column;

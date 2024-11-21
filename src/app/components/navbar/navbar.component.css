@@ -12,6 +12,25 @@ mat-toolbar {
   align-items: center;
 }
 
+.navbar-inner-container {
+  box-sizing: border-box;
+  display: flex;
+  column-gap: 3rem;
+
+  width: calc(100% - 15rem + 3rem);
+  padding-left: 2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.empty-bar {
+  width: 35rem;
+  height: 2rem;
+  border-radius: 2rem;
+
+  background-color: #dddddd;
+}
+
 .navbar-container > h1 {
   font-size: 3rem;
 }
