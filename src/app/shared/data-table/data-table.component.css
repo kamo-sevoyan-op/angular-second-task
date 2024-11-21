@@ -1,0 +1,65 @@
+:host {
+  display: block;
+}
+
+.rounded {
+  display: inline-block;
+  width: 5rem;
+  border-radius: 0.5rem;
+  padding: 0.2rem 1.5rem;
+
+  font-size: 0.8rem;
+  color: whitesmoke;
+  background-color: gray;
+}
+
+.country-flag {
+  --size: 32px;
+  display: inline-block;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  overflow: hidden;
+  border-radius: 50%;
+
+  border-style: solid;
+  border-color: rgb(238, 238, 238);
+  border-width: 3px;
+
+  box-shadow: 0 3px 3px gray;
+}
+
+.country-flag img {
+  width: auto;
+  height: 160%;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+tr:not(.mat-mdc-header-row) {
+  height: 5rem;
+}
+
+.mat-column-module {
+  text-align: center;
+}
+
+.mat-column-actions:not(.mat-mdc-header-cell) {
+  text-align: right;
+}
+
+.mat-column-country {
+  text-align: center;
+}
+
+.mat-mdc-header-row {
+  background: #dddddd;
+}
+
+.mat-mdc-header-cell:first-child {
+  border-radius: 0.5rem 0 0 0;
+}
+
+.mat-mdc-header-cell:last-child {
+  border-radius: 0 0.5rem 0 0;
+}
