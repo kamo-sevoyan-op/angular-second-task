@@ -41,10 +41,3 @@ body {
   background-color: black;
   color: white;
 }
-
-.g-bubble__disabled {
-  cursor: default;
-  opacity: 0.5;
-  pointer-events: none;
-  color: 919191;
-}
