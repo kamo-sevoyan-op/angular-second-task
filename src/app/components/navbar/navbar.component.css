@@ -1,6 +1,6 @@
 mat-toolbar {
   background-color: #eeeeee;
-  height: 7rem;
+  height: 5rem;
   padding: 1rem 3rem;
 }
 
@@ -23,7 +23,7 @@ mat-toolbar {
 }
 
 .empty-avatar {
-  --size: 5rem;
+  --size: 3.5rem;
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
