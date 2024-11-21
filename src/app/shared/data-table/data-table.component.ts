@@ -1,4 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, inject, TrackByFunction, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  TrackByFunction,
+  ViewChild,
+} from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -22,11 +29,12 @@ import { Rule } from '../../models/rule.model';
     MatIconModule,
     MatButtonModule,
     CommonModule,
+    CustomPaginationDirective,
   ],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css',
 })
-export class DataTableComponent implements AfterViewInit{
+export class DataTableComponent implements AfterViewInit {
   rulesService = inject(RulesService);
   dataSource = new MatTableDataSource(this.rulesService.getData());
   @ViewChild(MatPaginator) paginator?: MatPaginator;
@@ -43,7 +51,6 @@ export class DataTableComponent implements AfterViewInit{
 
   identity: TrackByFunction<Rule> = (_, item: Rule) => item.id;
 
-
   constructor() {
     this.paginator = new MatPaginator(
       new MatPaginatorIntl(),
@@ -56,7 +63,7 @@ export class DataTableComponent implements AfterViewInit{
   }
 
   /**
-   * 
+   * Create URL from given URL template.
    * @param coutryCode Two letter code for country.
    * @param size The size of the fetched image.
    * @returns Constructed URL with country code and size.
