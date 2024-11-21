@@ -41,3 +41,12 @@ body {
   background-color: black;
   color: white;
 }
+
+.mat-mdc-paginator-page-size-value {
+  width: 3rem;
+  padding-left: 0.5rem;
+  background-color: #eeeeee;
+
+  border-radius: 1rem;
+  text-align: left;
+}
