@@ -1,0 +1,34 @@
+.mat-sidenav {
+  height: auto;
+  width: fit-content;
+  padding-top: 2rem;
+
+  flex-direction: column;
+}
+
+.mat-sidenav-content {
+  min-height: calc(100vh - 7rem);
+  overflow: scroll;
+}
+
+.sidebar-element {
+  width: 100%;
+  height: 3rem;
+  margin-right: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  line-height: 3rem;
+}
+
+.sidebar-element:hover {
+  cursor: pointer;
+}
+
+.sidebar-element:not(.active-link):hover {
+  background-color: #dddddd;
+}
+
+.active-link {
+  background-color: #aaaaaa;
+}

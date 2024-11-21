@@ -1,0 +1,17 @@
+<mat-sidenav-container>
+  <mat-sidenav opened="opened" mode="side" position="start">
+    @for (navigation of navigations; track navigation.name){
+    <div
+      class="sidebar-element"
+      [routerLink]="navigation.link"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span>{{ navigation.name }}</span>
+    </div>
+    }
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>
