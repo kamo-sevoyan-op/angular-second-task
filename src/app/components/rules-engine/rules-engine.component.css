@@ -1,4 +1,13 @@
 .right-align {
+    width: 100%;
     display: flex;
     justify-content: end;
+}
+
+.mat-mdc-form-field-bottom-align {
+    height: 0.5rem;
+}
+
+.mat-mdc-form-field {
+    width: calc(100% / 3);
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +10,8 @@ import { DataTableComponent } from '../../shared/data-table/data-table.component
   imports: [MatInputModule, MatIconModule, MatButtonModule, DataTableComponent],
   templateUrl: './rules-engine.component.html',
   styleUrl: './rules-engine.component.css',
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class RulesEngineComponent {
   readonly headingText = 'Rules Engine';
