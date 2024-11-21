@@ -9,6 +9,7 @@
 .mat-sidenav-content {
   min-height: calc(100vh - 7rem);
   overflow: scroll;
+  padding: 3rem;
 }
 
 .sidebar-element {
