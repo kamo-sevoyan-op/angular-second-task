@@ -32,9 +32,9 @@ mat-sidenav {
 }
 
 .sidebar-element:not(.active-link):hover {
-  background-color: #dddddd;
+  background-color: #aaaaaa;
 }
 
 .active-link {
-  background-color: #aaaaaa;
+  background-color: #dddddd;
 }
