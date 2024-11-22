@@ -65,8 +65,12 @@ tr:not(.mat-mdc-header-row) {
   background-color: transparent;
 }
 
-.mat-mdc-cell,
-.mat-mdc-cell:first-child,
-.mat-mdc-cell:last-child {
+.mat-mdc-cell {
   border-bottom: 2px solid #eeeeee;
+}
+.mat-mdc-cell:first-child {
+  border-left: 2px solid #eeeeee;
+}
+.mat-mdc-cell:last-child {
+  border-right: 2px solid #eeeeee;
 }
