@@ -3,11 +3,25 @@
 <div class="right-align">
   <mat-form-field appearance="outline">
     <mat-label>Search</mat-label>
-    <input matInput type="search">
+    <input matInput type="search" />
     <button matSuffix mat-icon-button aria-label="Search">
       <mat-icon>search</mat-icon>
     </button>
   </mat-form-field>
 </div>
 
-<app-data-table />
+<ng-template #countryIconTemplate let-countryCode>
+  <app-country-icon [countryCode]="countryCode" />
+</ng-template>
+
+<ng-template #moduleTemplate let-module>
+  <span class="rounded">{{ module }}</span>
+</ng-template>
+
+<ng-template #actionsTemplate>
+  <button mat-icon-button>
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</ng-template>
+
+<app-data-table [tableColumns$]="tableColumns$" [tableData]="data" />

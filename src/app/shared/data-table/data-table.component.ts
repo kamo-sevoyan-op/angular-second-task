@@ -2,11 +2,12 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  inject,
+  Input,
+  OnInit,
   TrackByFunction,
   ViewChild,
 } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   MatPaginator,
@@ -15,10 +16,10 @@ import {
 } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RulesService } from '../../services/rules.service';
 import { CommonModule } from '@angular/common';
 import { CustomPaginationDirective } from '../../directives/custom-pagination.directive';
-import { Rule } from '../../models/rule.model';
+import { Column } from '../../models/column.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-data-table',
@@ -34,42 +35,38 @@ import { Rule } from '../../models/rule.model';
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css',
 })
-export class DataTableComponent implements AfterViewInit {
-  rulesService = inject(RulesService);
-  dataSource = new MatTableDataSource(this.rulesService.getData());
+export class DataTableComponent<T extends { id: number }>
+  implements AfterViewInit, OnInit
+{
+  @Input() tableColumns$!: Observable<Column[]>;
+  tableColumns: Column[] = [];
+  @Input() tableData!: T[];
+
+  selectedColumns!: string[];
+
+  dataSource: MatTableDataSource<T> = new MatTableDataSource();
+  identity: TrackByFunction<T> = (_, item: T) => item.id;
+
   @ViewChild(MatPaginator) paginator?: MatPaginator;
+  @ViewChild(MatTable) table?: MatTable<T>;
 
-  readonly selectedColumns = ['name', 'module', 'country', 'status', 'actions'];
-
-  readonly columnNames = [
-    'Rule name',
-    'Module',
-    'Country',
-    'Status',
-    'Actions',
-  ];
-
-  identity: TrackByFunction<Rule> = (_, item: Rule) => item.id;
-
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     this.paginator = new MatPaginator(
       new MatPaginatorIntl(),
       ChangeDetectorRef.prototype
     );
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator!;
+  ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.tableData);
+
+    this.tableColumns$.subscribe((val) => {
+      this.tableColumns = val;
+      this.selectedColumns = val.map((c) => c.value);
+    });
   }
 
-  /**
-   * Create URL from given URL template.
-   * @param coutryCode Two letter code for country.
-   * @param size The size of the fetched image.
-   * @returns Constructed URL with country code and size.
-   */
-  getImageUrl(coutryCode: string, size: number = 32) {
-    const url = `https://flagsapi.com/${coutryCode}/flat/${size}.png`;
-    return url;
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator!;
   }
 }
