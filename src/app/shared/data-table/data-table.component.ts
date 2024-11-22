@@ -48,7 +48,6 @@ export class DataTableComponent<T extends { id: number }>
   identity: TrackByFunction<T> = (_, item: T) => item.id;
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
-  @ViewChild(MatTable) table?: MatTable<T>;
 
   constructor(private cdr: ChangeDetectorRef) {
     this.paginator = new MatPaginator(
