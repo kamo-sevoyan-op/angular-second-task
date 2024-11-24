@@ -12,7 +12,6 @@ import {
 import { DataTableComponent } from '../../shared/data-table/data-table.component';
 import { Column } from '../../models/column.model';
 import { BehaviorSubject } from 'rxjs';
-import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -24,7 +23,6 @@ import { RulesService } from '../../services/rules-engine.service';
   standalone: true,
   imports: [
     DataTableComponent,
-    MatInputModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,

@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { CustomPaginationDirective } from '../../directives/custom-pagination.directive';
 import { Column } from '../../models/column.model';
 import { Observable } from 'rxjs';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-data-table',
@@ -31,6 +32,7 @@ import { Observable } from 'rxjs';
     MatButtonModule,
     CommonModule,
     CustomPaginationDirective,
+    MatInputModule
   ],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css',
