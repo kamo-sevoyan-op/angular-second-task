@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   computed,
+  DestroyRef,
   inject,
   input,
   OnInit,
@@ -11,7 +12,7 @@ import {
 } from '@angular/core';
 import { DataTableComponent } from '../../shared/data-table/data-table.component';
 import { Column } from '../../models/column.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -52,15 +53,24 @@ export class RuleComponent implements AfterViewInit, OnInit {
     this.rulesEngineService.contains(this.rulesEngineId())
   );
 
+  subscription?: Subscription;
+  destroyRef = inject(DestroyRef);
+
   ngOnInit(): void {
-    this.rulesEngineService.getCountryName(this.rulesEngineId()).subscribe({
-      next: (response: any) => {
-        this.countryName = response[0].name.common;
-      },
-      error: (error) => {
-        console.log(error);
-        this.countryName = 'Unknown country';
-      },
+    this.subscription = this.rulesEngineService
+      .getCountryName(this.rulesEngineId())
+      .subscribe({
+        next: (response: any) => {
+          this.countryName = response[0].name.common;
+        },
+        error: (error) => {
+          console.log(error);
+          this.countryName = 'Unknown country';
+        },
+      });
+
+    this.destroyRef.onDestroy(() => {
+      this.subscription?.unsubscribe();
     });
   }
 

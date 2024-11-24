@@ -53,13 +53,14 @@ export class DataTableComponent<T extends { id: number }>
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.tableData);
-    this.destroyRef.onDestroy(() => {
-      this.subscription?.unsubscribe();
-    });
 
     this.subscription = this.tableColumns$.subscribe((val) => {
       this.tableColumns = val;
       this.selectedColumns = val.map((c) => c.value);
+    });
+
+    this.destroyRef.onDestroy(() => {
+      this.subscription?.unsubscribe();
     });
   }
 
