@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class RulesService {
+export class RulesEngineService {
   private data: RulesEngine[] = [];
   private httpClient = inject(HttpClient);
 

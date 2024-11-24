@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { RuleService } from '../../services/rule.service';
-import { RulesService } from '../../services/rules-engine.service';
+import { RulesEngineService } from '../../services/rules-engine.service';
 
 @Component({
   selector: 'app-rule',
@@ -27,12 +27,12 @@ import { RulesService } from '../../services/rules-engine.service';
 })
 export class RuleComponent implements AfterViewInit, OnInit {
   readonly rulesEngine = computed(() =>
-    this.rulesService.getDataByRulesEngineId(this.rulesEngineId())
+    this.rulesEngineService.getDataByRulesEngineId(this.rulesEngineId())
   );
 
   rulesEngineId = input.required<string>();
   ruleService = inject(RuleService);
-  rulesService = inject(RulesService);
+  rulesEngineService = inject(RulesEngineService);
   changeDetectionReference = inject(ChangeDetectorRef);
 
   /**
@@ -49,11 +49,11 @@ export class RuleComponent implements AfterViewInit, OnInit {
   countryName = '';
   module = computed(() => this.rulesEngine().module);
   ruleEngineExists = computed(() =>
-    this.rulesService.contains(this.rulesEngineId())
+    this.rulesEngineService.contains(this.rulesEngineId())
   );
 
   ngOnInit(): void {
-    this.rulesService.getCountryName(this.rulesEngineId()).subscribe({
+    this.rulesEngineService.getCountryName(this.rulesEngineId()).subscribe({
       next: (response: any) => {
         this.countryName = response[0].name.common;
       },

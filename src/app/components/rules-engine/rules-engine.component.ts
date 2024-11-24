@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DataTableComponent } from '../../shared/data-table/data-table.component';
 import { Column } from '../../models/column.model';
-import { RulesService } from '../../services/rules-engine.service';
+import { RulesEngineService } from '../../services/rules-engine.service';
 import { CountryIconComponent } from './country-icon/country-icon.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -35,7 +35,7 @@ import { RouterModule } from '@angular/router';
 export class RulesEngineComponent implements AfterViewInit {
   readonly headingText = 'Rules Engine';
 
-  rulesService = inject(RulesService);
+  rulesEngineService = inject(RulesEngineService);
   changeDetectionReference = inject(ChangeDetectorRef);
 
   /**
@@ -49,7 +49,7 @@ export class RulesEngineComponent implements AfterViewInit {
   actionsTemplate?: TemplateRef<any>;
 
   tableColumns$ = new BehaviorSubject<Column[]>([]);
-  data = this.rulesService.getData();
+  data = this.rulesEngineService.getData();
 
   ngAfterViewInit() {
     /**
