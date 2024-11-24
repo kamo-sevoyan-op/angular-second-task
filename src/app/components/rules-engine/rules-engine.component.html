@@ -18,10 +18,14 @@
   <span class="rounded">{{ module }}</span>
 </ng-template>
 
-<ng-template #actionsTemplate>
-  <button mat-icon-button>
+<ng-template #actionsTemplate let-ruleEngineId="row.id">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="ruleEngineId">Edit</button>
+  </mat-menu>
 </ng-template>
 
 <app-data-table [tableColumns$]="tableColumns$" [tableData]="data" />
