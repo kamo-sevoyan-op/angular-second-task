@@ -113,6 +113,8 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
   /**
    * Change the active button style to the current one and display/hide additional buttons
    * based on the navigated index.
+   * @param previousIndex The index of previously active page.
+   * @param newIndex The index of currently active page.
    */
   private changeActiveButtonStyles(previousIndex: number, newIndex: number) {
     const previouslyActive = this.buttonsRef[previousIndex];
@@ -163,7 +165,7 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
   }
 
   /**
-   * Removes or change styling of some html elements.
+   * Remove or change styling of some html elements.
    */
   private styleDefaultPagination() {
     const nativeElement = this.elementRef.nativeElement;
@@ -216,7 +218,7 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
   }
 
   /**
-   * Creates `bubbleContainerRef` where all buttons will be rendered.
+   * Create `bubbleContainerRef` where all buttons will be rendered.
    */
   private createBubbleDivRef(): void {
     const actionContainer = this.elementRef.nativeElement.querySelector(
@@ -237,7 +239,7 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
   }
 
   /**
-   * Helper function that builds all button and add dots
+   * Build all buttons and add dots
    * between the first button, the rest and the last button.
    *
    * End result: (1) .... (4) (5) (6) ... (25).
@@ -281,6 +283,8 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
 
   /**
    * Create button HTML element.
+   * @param i The index of a given button
+   * @returns Constructed button.
    */
   private createButton(i: number): HTMLElement {
     const bubbleButton = this.ren.createElement('div');
@@ -302,7 +306,7 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
   }
 
   /**
-   * Helper function to create dots (....) on DOM indicating that there are
+   * Create dots (....) on DOM indicating that there are
    * many more bubbles until the last one.
    */
   private createDotsElement(): HTMLElement {
@@ -322,7 +326,8 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
   }
 
   /**
-   * Helper function to switch page.
+   * Switch to page.
+   * @param i Page number is being switched to.
    */
   private switchPage(i: number): void {
     const previousPageIndex = this.matPag.pageIndex;
