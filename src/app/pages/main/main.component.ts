@@ -7,8 +7,6 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
   standalone: true,
   imports: [SidebarComponent, NavbarComponent],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.css'
+  styleUrl: './main.component.css',
 })
-export class MainpageComponent {
-
-}
+export class MainpageComponent {}

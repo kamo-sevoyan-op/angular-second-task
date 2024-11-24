@@ -11,10 +11,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DataTableComponent } from '../../shared/data-table/data-table.component';
 import { Column } from '../../models/column.model';
-import { RulesService } from '../../services/rules.service';
+import { RulesService } from '../../services/rules-engine.service';
 import { CountryIconComponent } from './country-icon/country-icon.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-rules-engine',
@@ -25,6 +27,8 @@ import { BehaviorSubject } from 'rxjs';
     MatButtonModule,
     DataTableComponent,
     CountryIconComponent,
+    MatMenuModule,
+    RouterModule,
   ],
   templateUrl: './rules-engine.component.html',
   styleUrl: './rules-engine.component.css',
@@ -35,7 +39,6 @@ export class RulesEngineComponent implements AfterViewInit {
 
   rulesService = inject(RulesService);
   changeDetectionReference = inject(ChangeDetectorRef);
-  data = this.rulesService.getData();
 
   /**
    * Create reference to column templates
@@ -48,6 +51,7 @@ export class RulesEngineComponent implements AfterViewInit {
   actionsTemplate?: TemplateRef<any>;
 
   tableColumns$ = new BehaviorSubject<Column[]>([]);
+  data = this.rulesService.getData();
 
   ngAfterViewInit() {
     /**
@@ -78,6 +82,7 @@ export class RulesEngineComponent implements AfterViewInit {
         template: this.actionsTemplate,
       },
     ]);
+
     this.changeDetectionReference.detectChanges();
   }
 }

@@ -7,7 +7,7 @@ import {
   TrackByFunction,
   ViewChild,
 } from '@angular/core';
-import { MatTable, MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   MatPaginator,
@@ -42,7 +42,7 @@ export class DataTableComponent<T extends { id: number }>
   tableColumns: Column[] = [];
   @Input() tableData!: T[];
 
-  selectedColumns!: string[];
+  selectedColumns?: string[];
 
   dataSource: MatTableDataSource<T> = new MatTableDataSource();
   identity: TrackByFunction<T> = (_, item: T) => item.id;

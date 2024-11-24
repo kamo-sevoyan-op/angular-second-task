@@ -1,19 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Rule } from '../models/rule.model';
-import { Status } from '../models/rule.model';
+import { inject, Injectable } from '@angular/core';
+import { RulesEngine } from '../models/rules-engine.model';
+import { Status } from '../models/rules-engine.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RulesService {
-  private data: Rule[] = [];
+  private data: RulesEngine[] = [];
+  private httpClient = inject(HttpClient);
+
+  constructor() {
+    const N = 13;
+    this.generateMockData(N);
+  }
 
   /**
    * Generates mock data from the predefined sets of values.
    *
    * @param count The number of data is being generated.
    */
-  generateMockData(count: number) {
+  private generateMockData(count: number) {
     const ruleNameChoices = ['Leave Types', 'Country General', 'Time Tracking'];
     const moduleChoices = ['Leaves', 'Attendance'];
     const countryChoices = ['AM', 'US', 'JO', 'UA', 'GB', 'AE', 'IR', 'IT'];
@@ -41,10 +48,7 @@ export class RulesService {
       });
     }
   }
-  constructor() {
-    const N = 40;
-    this.generateMockData(N);
-  }
+
   /**
    *
    * @returns Generated data.
@@ -52,5 +56,29 @@ export class RulesService {
   getData() {
     const result = [...this.data];
     return result;
+  }
+
+  /**
+   * Filter and return data for given Rules Engine.
+   * @param rulesEngineId Id of a Rules Engine.
+   * @returns Data for given Rules Engine.
+   */
+  getDataByRulesEngineId(rulesEngineId: string) {
+    const result = this.data.filter(
+      (item) => item.id === parseFloat(rulesEngineId)
+    );
+    return result[0];
+  }
+
+  /**
+   * Get country name from its country code using restcountries API.
+   * @param rulesEngineId Country code.
+   * @returns An observable of http request.
+   */
+  getCountryName(rulesEngineId: string) {
+    const rulesEngine = this.getDataByRulesEngineId(rulesEngineId);
+    const apiTemplate = 'https://restcountries.com/v3.1/alpha';
+    const apiUrl = `${apiTemplate}/${rulesEngine.country}`;
+    return this.httpClient.get(apiUrl);
   }
 }
