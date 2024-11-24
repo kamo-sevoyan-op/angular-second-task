@@ -82,6 +82,10 @@ export class RulesEngineService {
     return this.httpClient.get(apiUrl);
   }
 
+  /**
+   * Checks whether data exists for a given `rulesEngineId`.
+   * @param rulesEngineId Rules engine id.
+   */
   contains(rulesEngineId: string) {
     const id = parseFloat(rulesEngineId);
     return this.data.some((elem) => elem.id === id);
