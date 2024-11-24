@@ -13,7 +13,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 export class SidebarComponent {
   navigations = [
     { name: 'Dashboard', link: '' },
-    { name: 'Rules Engine', link: '/routes-engine' },
+    { name: 'Rules Engine', link: '/rules-engine' },
     { name: 'Accounts', link: '' },
     { name: 'Billing', link: '' },
     { name: 'User Management', link: '' },
