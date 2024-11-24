@@ -118,6 +118,10 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
     const previouslyActive = this.buttonsRef[previousIndex];
     const currentActive = this.buttonsRef[newIndex];
 
+    if (previouslyActive === undefined || currentActive === undefined) {
+      return;
+    }
+
     this.ren.removeClass(previouslyActive, 'g-bubble__active');
     this.ren.addClass(currentActive, 'g-bubble__active');
 
