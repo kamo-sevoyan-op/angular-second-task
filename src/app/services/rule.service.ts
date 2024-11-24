@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Rule, Validity, Status } from '../models/rule.model';
+import { getRandomIndex } from './utils';
 
 @Injectable({
   providedIn: 'root',
@@ -30,16 +31,16 @@ export class RuleService {
     const statusChoices = ['Active', 'Inactive', 'Draft'];
 
     for (let i = 0; i < count; i++) {
-      let randomIndex = Math.floor(Math.random() * typeNameChoices.length);
+      let randomIndex = getRandomIndex(typeNameChoices.length);
       const name = typeNameChoices[randomIndex];
 
-      randomIndex = Math.floor(Math.random() * validityChoices.length);
+      randomIndex = getRandomIndex(validityChoices.length);
       const validity = validityChoices[randomIndex];
 
-      randomIndex = Math.floor(Math.random() * statusChoices.length);
+      randomIndex = getRandomIndex(statusChoices.length);
       const status = statusChoices[randomIndex];
 
-      const randomRulesEngineId = Math.floor(Math.random() * rulesEngineCount);
+      const randomRulesEngineId = getRandomIndex(rulesEngineCount);
 
       this.data.push({
         id: i,
