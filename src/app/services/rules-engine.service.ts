@@ -81,4 +81,9 @@ export class RulesService {
     const apiUrl = `${apiTemplate}/${rulesEngine.country}`;
     return this.httpClient.get(apiUrl);
   }
+
+  contains(rulesEngineId: string) {
+    const id = parseFloat(rulesEngineId);
+    return this.data.some((elem) => elem.id === id);
+  }
 }

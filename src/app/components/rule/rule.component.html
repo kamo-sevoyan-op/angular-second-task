@@ -1,3 +1,8 @@
+@if (!ruleEngineExists()) {
+<h1>
+  Rules engine with <strong>{{ rulesEngineId() }}</strong> does not exit
+</h1>
+} @else {
 <div class="space-between">
   <h2>Rules Engine > {{ module() }}-{{ countryName }}</h2>
   <button mat-button extended id="create-new-button">
@@ -16,3 +21,4 @@
 </ng-template>
 
 <app-data-table [tableColumns$]="tableColumns$" [tableData]="data()" />
+}

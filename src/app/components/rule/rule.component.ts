@@ -21,12 +21,7 @@ import { RulesService } from '../../services/rules-engine.service';
 @Component({
   selector: 'app-rule',
   standalone: true,
-  imports: [
-    DataTableComponent,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
-  ],
+  imports: [DataTableComponent, MatIconModule, MatButtonModule, MatMenuModule],
   templateUrl: './rule.component.html',
   styleUrl: './rule.component.css',
 })
@@ -53,6 +48,9 @@ export class RuleComponent implements AfterViewInit, OnInit {
 
   countryName = '';
   module = computed(() => this.rulesEngine().module);
+  ruleEngineExists = computed(() =>
+    this.rulesService.contains(this.rulesEngineId())
+  );
 
   ngOnInit(): void {
     this.rulesService.getCountryName(this.rulesEngineId()).subscribe({
