@@ -47,7 +47,7 @@ export class RuleComponent implements AfterViewInit, OnInit {
   );
 
   countryName = '';
-  module = computed(() => this.rulesEngine().module);
+  name = computed(() => this.rulesEngine().name);
   ruleEngineExists = computed(() =>
     this.rulesEngineService.contains(this.rulesEngineId())
   );
