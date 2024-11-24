@@ -1,0 +1,28 @@
+.right-align {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+}
+
+.space-between {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#create-new-button {
+  width: 12rem;
+  height: 2.5rem;
+
+  color: white;
+  background-color: #999999;
+}
+
+.mat-mdc-form-field-bottom-align {
+  height: 0.5rem;
+}
+
+.mat-mdc-form-field {
+  width: calc(100% / 3);
+}
