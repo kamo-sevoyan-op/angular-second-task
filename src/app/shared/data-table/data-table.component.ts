@@ -1,7 +1,8 @@
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
+  DestroyRef,
+  inject,
   Input,
   OnInit,
   TrackByFunction,
@@ -9,11 +10,7 @@ import {
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
-import {
-  MatPaginator,
-  MatPaginatorIntl,
-  MatPaginatorModule,
-} from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -32,7 +29,7 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     CommonModule,
     CustomPaginationDirective,
-    MatInputModule
+    MatInputModule,
   ],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css',
@@ -42,7 +39,7 @@ export class DataTableComponent<T extends { id: number }>
 {
   @Input() tableColumns$!: Observable<Column[]>;
   tableColumns: Column[] = [];
-  @Input() tableData!: T[];
+  @Input() tableData: T[] = [];
 
   selectedColumns?: string[];
 
@@ -50,13 +47,6 @@ export class DataTableComponent<T extends { id: number }>
   identity: TrackByFunction<T> = (_, item: T) => item.id;
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
-
-  constructor(private cdr: ChangeDetectorRef) {
-    this.paginator = new MatPaginator(
-      new MatPaginatorIntl(),
-      ChangeDetectorRef.prototype
-    );
-  }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.tableData);
@@ -68,6 +58,8 @@ export class DataTableComponent<T extends { id: number }>
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator!;
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
   }
 }
