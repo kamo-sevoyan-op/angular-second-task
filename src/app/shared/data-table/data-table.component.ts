@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { CustomPaginationDirective } from '../../directives/custom-pagination.directive';
 import { Column } from '../../models/column.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
@@ -48,10 +48,16 @@ export class DataTableComponent<T extends { id: number }>
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
+  subscription?: Subscription;
+  destroyRef = inject(DestroyRef);
+
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.tableData);
+    this.destroyRef.onDestroy(() => {
+      this.subscription?.unsubscribe();
+    });
 
-    this.tableColumns$.subscribe((val) => {
+    this.subscription = this.tableColumns$.subscribe((val) => {
       this.tableColumns = val;
       this.selectedColumns = val.map((c) => c.value);
     });
