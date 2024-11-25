@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   computed,
   DestroyRef,
@@ -28,7 +27,7 @@ import { RulesEngineService } from '../../services/rules-engine.service';
 })
 export class RuleComponent implements OnInit {
   /**
-   * Create reference to column templates
+   * Create reference to column templates.
    */
   @ViewChild('actionsTemplate', { static: true })
   actionsTemplate?: TemplateRef<any>;
@@ -36,7 +35,6 @@ export class RuleComponent implements OnInit {
   rulesEngineId = input.required<string>();
   ruleService = inject(RuleService);
   rulesEngineService = inject(RulesEngineService);
-  changeDetectionReference = inject(ChangeDetectorRef);
 
   data = computed(() =>
     this.ruleService.getDataByRulesEngineId(this.rulesEngineId())
