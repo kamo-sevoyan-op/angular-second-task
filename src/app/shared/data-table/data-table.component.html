@@ -9,7 +9,7 @@
 </div>
 
 <table mat-table [dataSource]="dataSource" [trackBy]="identity">
-  @for (column of tableColumns; track column.value) {
+  @for (column of tableColumns(); track column.value) {
 
   <ng-container [matColumnDef]="column.value">
     <th mat-header-cell *matHeaderCellDef>{{ column.name }}</th>

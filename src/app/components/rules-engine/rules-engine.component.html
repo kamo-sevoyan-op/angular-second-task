@@ -1,5 +1,7 @@
 <h2>{{ headingText }}</h2>
 
+<app-data-table [tableColumns]="tableColumns" [tableData]="data" />
+
 <ng-template #countryIconTemplate let-countryCode>
   <app-country-icon [countryCode]="countryCode" />
 </ng-template>
@@ -17,5 +19,3 @@
     <button mat-menu-item [routerLink]="ruleEngineId">Edit</button>
   </mat-menu>
 </ng-template>
-
-<app-data-table [tableColumns$]="tableColumns$" [tableData]="data" />
