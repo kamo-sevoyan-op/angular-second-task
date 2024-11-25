@@ -1,6 +1,6 @@
 <h2>{{ headingText }}</h2>
 
-<app-data-table [tableColumns]="tableColumns" [tableData]="data" />
+<app-data-table [tableColumns]="tableColumns()" [tableData]="data" />
 
 <!-- Define the columns of the table -->
 <ng-template #countryIconTemplate let-countryCode>

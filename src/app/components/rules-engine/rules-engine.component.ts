@@ -2,6 +2,7 @@ import {
   Component,
   inject,
   OnInit,
+  signal,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
@@ -48,11 +49,11 @@ export class RulesEngineComponent implements OnInit {
  rulesEngineService = inject(RulesEngineService);
  changeDetectionReference = inject(ChangeDetectorRef);
  data = this.rulesEngineService.getData();
- tableColumns: Column[] = [];
+ tableColumns = signal<Column[]>([]);
  readonly headingText = 'Rules Engine';
 
   ngOnInit() {
-    this.tableColumns = [
+    this.tableColumns.set([
       {
         value: 'name',
         name: 'Rule name',
@@ -76,6 +77,6 @@ export class RulesEngineComponent implements OnInit {
         name: 'Actions',
         template: this.actionsTemplate,
       },
-    ];
+    ]);
   }
 }
