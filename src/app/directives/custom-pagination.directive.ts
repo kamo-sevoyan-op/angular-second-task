@@ -76,7 +76,7 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
       length: number
     ) => {
       const start = page * pageSize + 1;
-      const end = (page + 1) * pageSize;
+      const end = Math.min((page + 1) * pageSize, length);
       return `${start} - ${end} out of ${length}`;
     };
   }
@@ -249,7 +249,7 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
       this.appCustomLength / this.matPag.pageSize
     );
 
-    if (neededButtons === 1) {
+    if (neededButtons === 0 || neededButtons === 1) {
       this.ren.setStyle(this.elementRef.nativeElement, 'display', 'none');
       return;
     }
