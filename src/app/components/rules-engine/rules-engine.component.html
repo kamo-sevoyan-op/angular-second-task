@@ -2,6 +2,7 @@
 
 <app-data-table [tableColumns]="tableColumns" [tableData]="data" />
 
+<!-- Define the columns of the table -->
 <ng-template #countryIconTemplate let-countryCode>
   <app-country-icon [countryCode]="countryCode" />
 </ng-template>
