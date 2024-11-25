@@ -76,7 +76,7 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
       length: number
     ) => {
       const start = page * pageSize + 1;
-      const end = (page + 1) * pageSize;
+      const end = Math.min((page + 1) * pageSize, length);
       return `${start} - ${end} out of ${length}`;
     };
   }
