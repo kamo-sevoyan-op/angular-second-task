@@ -249,7 +249,7 @@ export class CustomPaginationDirective implements AfterViewInit, OnChanges {
       this.appCustomLength / this.matPag.pageSize
     );
 
-    if (neededButtons === 1) {
+    if (neededButtons === 0 || neededButtons === 1) {
       this.ren.setStyle(this.elementRef.nativeElement, 'display', 'none');
       return;
     }
