@@ -1,11 +1,13 @@
 import {
   AfterViewInit,
   Component,
+  computed,
   DestroyRef,
   inject,
   input,
   OnChanges,
   OnInit,
+  Signal,
   SimpleChanges,
   TrackByFunction,
   ViewChild,
@@ -37,14 +39,14 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './data-table.component.css',
 })
 export class DataTableComponent<T extends { id: number }>
-  implements AfterViewInit, OnInit, OnChanges
+  implements AfterViewInit, OnInit
 {
   tableData = input.required<T[]>();
   tableColumns = input.required<Column[]>();
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   identity: TrackByFunction<T> = (_, item: T) => item.id;
 
-  selectedColumns: string[] = [];
+  selectedColumns = computed(() => this.tableColumns().map((c) => c.value));
   dataSource = new MatTableDataSource<T>([]);
 
   subscription?: Subscription;
@@ -57,15 +59,6 @@ export class DataTableComponent<T extends { id: number }>
   ngAfterViewInit() {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['tableColumns'] && this.tableColumns) {
-      this.selectedColumns = this.tableColumns().map((c) => c.value);
-    }
-    if (changes['tableData'] && this.tableData) {
-      this.dataSource.data = this.tableData();
     }
   }
 }

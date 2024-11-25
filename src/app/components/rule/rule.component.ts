@@ -6,6 +6,7 @@ import {
   inject,
   input,
   OnInit,
+  signal,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -40,7 +41,7 @@ export class RuleComponent implements OnInit {
   data = computed(() =>
     this.ruleService.getDataByRulesEngineId(this.rulesEngineId())
   );
-  tableColumns!: Column[];
+  tableColumns = signal<Column[]>([]);
 
   readonly rulesEngine = computed(() =>
     this.rulesEngineService.getDataByRulesEngineId(this.rulesEngineId())
@@ -55,7 +56,7 @@ export class RuleComponent implements OnInit {
   destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.tableColumns = [
+    this.tableColumns.set([
       {
         value: 'name',
         name: 'Type Name',
@@ -73,7 +74,7 @@ export class RuleComponent implements OnInit {
         name: 'Actions',
         template: this.actionsTemplate,
       },
-    ];
+    ]);
 
     this.subscription = this.rulesEngineService
       .getCountryName(this.rulesEngineId())
