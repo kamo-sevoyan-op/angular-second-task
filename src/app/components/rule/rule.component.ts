@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   computed,
@@ -12,7 +11,7 @@ import {
 } from '@angular/core';
 import { DataTableComponent } from '../../shared/data-table/data-table.component';
 import { Column } from '../../models/column.model';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -26,27 +25,26 @@ import { RulesEngineService } from '../../services/rules-engine.service';
   templateUrl: './rule.component.html',
   styleUrl: './rule.component.css',
 })
-export class RuleComponent implements AfterViewInit, OnInit {
-  readonly rulesEngine = computed(() =>
-    this.rulesEngineService.getDataByRulesEngineId(this.rulesEngineId())
-  );
+export class RuleComponent implements OnInit {
+  /**
+   * Create reference to column templates
+   */
+  @ViewChild('actionsTemplate', { static: true })
+  actionsTemplate?: TemplateRef<any>;
 
   rulesEngineId = input.required<string>();
   ruleService = inject(RuleService);
   rulesEngineService = inject(RulesEngineService);
   changeDetectionReference = inject(ChangeDetectorRef);
 
-  /**
-   * Create reference to column templates
-   */
-  @ViewChild('actionsTemplate', { static: false })
-  actionsTemplate?: TemplateRef<any>;
-
-  tableColumns$ = new BehaviorSubject<Column[]>([]);
   data = computed(() =>
     this.ruleService.getDataByRulesEngineId(this.rulesEngineId())
   );
+  tableColumns!: Column[];
 
+  readonly rulesEngine = computed(() =>
+    this.rulesEngineService.getDataByRulesEngineId(this.rulesEngineId())
+  );
   countryName = '';
   name = computed(() => this.rulesEngine().name);
   ruleEngineExists = computed(() =>
@@ -57,25 +55,7 @@ export class RuleComponent implements AfterViewInit, OnInit {
   destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.subscription = this.rulesEngineService
-      .getCountryName(this.rulesEngineId())
-      .subscribe({
-        next: (response: any) => {
-          this.countryName = response[0].name.common;
-        },
-        error: (error) => {
-          console.log(error);
-          this.countryName = 'Unknown country';
-        },
-      });
-
-    this.destroyRef.onDestroy(() => {
-      this.subscription?.unsubscribe();
-    });
-  }
-
-  ngAfterViewInit(): void {
-    this.tableColumns$.next([
+    this.tableColumns = [
       {
         value: 'name',
         name: 'Type Name',
@@ -93,8 +73,22 @@ export class RuleComponent implements AfterViewInit, OnInit {
         name: 'Actions',
         template: this.actionsTemplate,
       },
-    ]);
+    ];
 
-    this.changeDetectionReference.detectChanges();
+    this.subscription = this.rulesEngineService
+      .getCountryName(this.rulesEngineId())
+      .subscribe({
+        next: (response: any) => {
+          this.countryName = response[0].name.common;
+        },
+        error: (error) => {
+          console.log(error);
+          this.countryName = 'Unknown country';
+        },
+      });
+
+    this.destroyRef.onDestroy(() => {
+      this.subscription?.unsubscribe();
+    });
   }
 }
