@@ -3,8 +3,10 @@ import {
   Component,
   DestroyRef,
   inject,
-  Input,
+  input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   TrackByFunction,
   ViewChild,
 } from '@angular/core';
@@ -16,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { CustomPaginationDirective } from '../../directives/custom-pagination.directive';
 import { Column } from '../../models/column.model';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
@@ -35,38 +37,35 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './data-table.component.css',
 })
 export class DataTableComponent<T extends { id: number }>
-  implements AfterViewInit, OnInit
+  implements AfterViewInit, OnInit, OnChanges
 {
-  @Input() tableColumns$!: Observable<Column[]>;
-  tableColumns: Column[] = [];
-  @Input() tableData: T[] = [];
-
-  selectedColumns?: string[];
-
-  dataSource: MatTableDataSource<T> = new MatTableDataSource();
+  tableData = input.required<T[]>();
+  tableColumns = input.required<Column[]>();
+  @ViewChild(MatPaginator) paginator?: MatPaginator;
   identity: TrackByFunction<T> = (_, item: T) => item.id;
 
-  @ViewChild(MatPaginator) paginator?: MatPaginator;
+  selectedColumns: string[] = [];
+  dataSource = new MatTableDataSource<T>([]);
 
   subscription?: Subscription;
   destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.tableData);
-
-    this.subscription = this.tableColumns$.subscribe((val) => {
-      this.tableColumns = val;
-      this.selectedColumns = val.map((c) => c.value);
-    });
-
-    this.destroyRef.onDestroy(() => {
-      this.subscription?.unsubscribe();
-    });
+    this.dataSource.data = this.tableData();
   }
 
   ngAfterViewInit() {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tableColumns'] && this.tableColumns) {
+      this.selectedColumns = this.tableColumns().map((c) => c.value);
+    }
+    if (changes['tableData'] && this.tableData) {
+      this.dataSource.data = this.tableData();
     }
   }
 }
