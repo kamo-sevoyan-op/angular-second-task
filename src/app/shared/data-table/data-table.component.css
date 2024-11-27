@@ -17,6 +17,7 @@ tr:not(.mat-mdc-header-row) {
 
 .mat-mdc-header-row {
   background: #dddddd;
+  border-radius: 0.5rem 0.5rem 0 0 !important;
 }
 
 .mat-mdc-header-cell:first-child {
@@ -53,4 +54,8 @@ tr:not(.mat-mdc-header-row) {
 
 .mat-mdc-form-field {
   width: calc(100% / 3);
+}
+
+.mat-mdc-table {
+  background-color: transparent;
 }
