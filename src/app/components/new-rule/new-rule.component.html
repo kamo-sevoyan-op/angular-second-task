@@ -1,0 +1,41 @@
+<h2>Rules Engine > Leave Types - Jordan > Create New</h2>
+
+<form [formGroup]="ruleForm" (ngOnSubmit)="onSubmit()">
+  <div class="sections-container">
+    <div class="name-input-container section-container">
+      <h2>Name</h2>
+      <mat-form-field floatLabel="auto" appearance="outline" class="full-width">
+        <input type="text" matInput required formControlName="name" />
+        @if (ruleForm.controls.name.hasError('required')) {
+        <mat-error>Name is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <app-basic-info [formGroup]="ruleForm.controls.basicInfo" />
+
+    @if (entitledValue() !== null){
+
+    <app-balance-input
+      [formGroup]="ruleForm.controls.balance"
+      [entitledValue]="entitledValue()"
+    ></app-balance-input>
+    } @if (entitledValue() === 'through-balance') {
+    <app-consumption [formGroup]="ruleForm.controls.consumption" />
+
+    }
+
+    <div class="button-container">
+      <button type="button" mat-button extended>Cancel</button>
+      <button type="button" mat-stroked-button extended>Save as draft</button>
+      <button
+        mat-flat-button
+        extended
+        type="submit"
+        [disabled]="ruleForm.invalid"
+      >
+        Create
+      </button>
+    </div>
+  </div>
+</form>

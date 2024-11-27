@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+
+.grid-container:has(mat-label) {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 0.5rem;
+}
+
+.inputs-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.input-right .mdc-notched-outline__leading,
+.input-left .mdc-notched-outline__trailing {
+  border-radius: 0 !important;
+}
+
+.input-left .mdc-notched-outline__trailing {
+  border-right: none;
+}
+
+.vertical-center-align {
+  line-height: var(--mat-form-field-container-height);
+}

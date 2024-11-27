@@ -1,6 +1,7 @@
 mat-sidenav {
   background-color: #eeeeee;
   border-right-style: none;
+  background-color: #E8E8E8;
 }
 
 .mat-sidenav {
@@ -15,6 +16,7 @@ mat-sidenav {
   min-height: calc(100vh - 5rem);
   overflow: scroll;
   padding: 3rem;
+  background-color: #F7F7F7;
 }
 
 .sidebar-element {

@@ -1,9 +1,9 @@
 @use "@angular/material" as mat;
 @include mat.core();
 
-$angular-second-task-primary: mat.define-palette(mat.$indigo-palette);
+$angular-second-task-primary: mat.define-palette(mat.$blue-palette);
 $angular-second-task-accent: mat.define-palette(
-  mat.$pink-palette,
+  mat.$blue-palette,
   A200,
   A100,
   A400
@@ -19,7 +19,7 @@ $angular-second-task-theme: mat.define-light-theme(
       warn: $angular-second-task-warn,
     ),
     typography: mat.define-typography-config(),
-    density: 0,
+    density: -3,
   )
 );
 
