@@ -5,7 +5,7 @@
 } @else {
 <div class="space-between">
   <h2>Rules Engine > {{ name() }}-{{ countryName }}</h2>
-  <button mat-button extended id="create-new-button">
+  <button mat-button extended id="create-new-button"  [routerLink]="['new-rule']">
     <mat-icon class="plus-icon">add</mat-icon> Create New
   </button>
 </div>

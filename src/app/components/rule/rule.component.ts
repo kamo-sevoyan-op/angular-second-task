@@ -17,11 +17,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { RuleService } from '../../services/rule.service';
 import { RulesEngineService } from '../../services/rules-engine.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-rule',
   standalone: true,
-  imports: [DataTableComponent, MatIconModule, MatButtonModule, MatMenuModule],
+  imports: [
+    DataTableComponent,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    RouterModule,
+  ],
   templateUrl: './rule.component.html',
   styleUrl: './rule.component.css',
 })

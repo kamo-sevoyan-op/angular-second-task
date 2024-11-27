@@ -1,0 +1,29 @@
+<div class="grid-container">
+  @if(label()) {
+  <mat-label class="vertical-center-align">{{ label() }}:</mat-label>
+  }
+
+  <div class="inputs-container">
+    <mat-form-field
+      floatLabel="auto"
+      appearance="outline"
+      class="input-left"
+      appearance="outline"
+    >
+      <input matInput required type="number" />
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto" appearance="outline" class="input-right">
+      <mat-select
+        matInput
+        required
+        panelClass="panel-custom-width"
+        [panelWidth]="'max-content'"
+      >
+        @for (elem of options(); track elem.name){
+        <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
