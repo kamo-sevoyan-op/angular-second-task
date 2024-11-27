@@ -3,14 +3,18 @@
   <mat-label class="vertical-center-align">{{ label() }}:</mat-label>
   }
 
-  <div class="inputs-container">
+  <div class="inputs-container" [formGroup]="formGroup()">
     <mat-form-field
       floatLabel="auto"
       appearance="outline"
       class="input-left"
       appearance="outline"
     >
-      <input matInput required type="number" />
+      <input matInput required type="number" formControlName="value" [value]="0"/>
+
+      @if (formGroup().get('value')?.hasError('required')) {
+        <mat-error><strong>required</strong></mat-error>
+        }
     </mat-form-field>
 
     <mat-form-field floatLabel="auto" appearance="outline" class="input-right">
@@ -19,11 +23,16 @@
         required
         panelClass="panel-custom-width"
         [panelWidth]="'max-content'"
+        formControlName="unit"
       >
         @for (elem of options(); track elem.name){
         <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
         }
       </mat-select>
+
+      @if (formGroup().get('unit')?.hasError('required')) {
+        <mat-error><strong>required</strong></mat-error>
+        }
     </mat-form-field>
   </div>
 </div>

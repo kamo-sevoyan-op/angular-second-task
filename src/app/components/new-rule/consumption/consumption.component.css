@@ -1,0 +1,31 @@
+.section-container {
+  padding: 1rem 2rem 1rem 2rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+}
+
+.consumption-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.labeled-form-field {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.vertically-aligned-label {
+  line-height: var(--mat-form-field-container-height);
+}
+
+.unused-balance-horizontal-group,
+.consumption-horizontal-group {
+  display: flex;
+  width: max-content;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  column-gap: 1rem;
+}

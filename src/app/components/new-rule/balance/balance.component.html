@@ -1,0 +1,110 @@
+<div class="section-container balance-container" [formGroup]="formGroup()">
+  <h2>Balance</h2>
+
+  <app-coupled-input
+    [options]="balanceUnitOptions"
+    class="balance-input"
+    label="Balance"
+    [formGroup]="formGroup().controls.balance"
+  ></app-coupled-input>
+
+  @if (entitledValue() === 'through-balance') {
+  <div class="balance-conditions-outer">
+    <mat-checkbox formControlName="conditionalCheckBox" [checked]="false">
+      Conditional
+    </mat-checkbox>
+    <div class="balance-conditions-inner" formGroupName="conditional">
+      <div class="balance-conditions-logic">
+        <mat-label class="vertically-aligned-label"
+          >Balance Conditions:</mat-label
+        >
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-select matInput required formControlName="conditionType">
+            @for (elem of conditionTypeOptions; track elem.name){
+            <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
+            }
+          </mat-select>
+
+          @if
+          (formGroup().get('conditional.conditionType')?.hasError('required')) {
+          <mat-error><strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+
+        <app-coupled-input
+          [options]="balanceUnitOptions"
+          class="balance-input"
+          [formGroup]="
+            formGroup().controls.conditional.controls.conditionalBalance
+          "
+        ></app-coupled-input>
+      </div>
+
+      <app-coupled-input
+        [options]="balanceUnitOptions"
+        class="balance-input"
+        label="Balance"
+        [formGroup]="formGroup().controls.conditional.controls.balance"
+      ></app-coupled-input>
+    </div>
+  </div>
+  }
+
+  <div class="extended-balance-outer">
+    <mat-checkbox formControlName="extendCheckBox" [checked]="false">
+      Extend Balance
+    </mat-checkbox>
+    <div class="balance-conditions-inner" formGroupName="extend">
+      <app-coupled-input
+        [options]="balanceUnitOptions"
+        class="balance-input"
+        label="Extended Balance"
+        [formGroup]="formGroup().controls.extend.controls.balance"
+      ></app-coupled-input>
+    </div>
+  </div>
+
+  <mat-checkbox formControlName="canBeOveridden">
+    Balance Can Be Overriden
+  </mat-checkbox>
+
+  @if (entitledValue() === 'through-balance') {
+  <div class="frequency-outer" formGroupName="frequency">
+    <div class="labeled-form-field">
+      <mat-label class="vertically-aligned-label">Frequency:</mat-label>
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-select matInput required formControlName="frequency">
+          @for (elem of frequencyOptions; track elem.name){
+          <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
+          }
+        </mat-select>
+
+        @if (formGroup().get('frequency.frequency')?.hasError('required')) {
+        <mat-error><strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="labeled-form-field">
+      <mat-label class="vertically-aligned-label">Frequency Start:</mat-label>
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <input
+          required
+          matInput
+          [matDatepicker]="picker"
+          formControlName="start"
+        />
+
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #picker></mat-datepicker>
+
+        @if (formGroup().get('frequency.start')?.hasError('required')) {
+        <mat-error><strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </div>
+  }
+</div>

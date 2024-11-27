@@ -1,0 +1,45 @@
+<div class="section-container consumption-container" [formGroup]="formGroup()">
+  <h2>Consumption</h2>
+
+  <mat-radio-group
+    matInput
+    aria-label="Select an option"
+    formControlName="consumption"
+    class="consumption-horizontal-group"
+  >
+    <mat-radio-button value="accural">Accural</mat-radio-button>
+    <mat-radio-button value="accumulated">Accumulated</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-radio-group
+    matInput
+    aria-label="Select an option"
+    formControlName="unusedBalance"
+    class="unused-balance-horizontal-group"
+  >
+    <mat-label>Unused Balance:</mat-label>
+    <mat-radio-button value="wave-out">Wave out</mat-radio-button>
+    <mat-radio-button value="cashement">Cashement</mat-radio-button>
+    <mat-radio-button value="carry-over">Carry over</mat-radio-button>
+  </mat-radio-group>
+
+  <div class="labeled-form-field">
+    <mat-label class="vertically-aligned-label">Frequency number:</mat-label>
+    <mat-form-field floatLabel="auto" appearance="outline">
+      <mat-select
+        matInput
+        required
+        [value]="1"
+        formControlName="frequencyNumber"
+      >
+        @for (elem of frequencyNumberOptions; track elem.name){
+        <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
+        }
+      </mat-select>
+
+      @if (formGroup().get('frequencyNumber')?.hasError('required')) {
+      <mat-error><strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+  </div>
+</div>

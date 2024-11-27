@@ -1,0 +1,122 @@
+<div class="section-container" [formGroup]="formGroup()">
+  <h2>Basic info</h2>
+
+  <div class="basic-info-input-container">
+    <div class="radio-inputs">
+      <mat-radio-group
+        matInput
+        aria-label="Select an option"
+        formControlName="type"
+        class="horizontal-group"
+      >
+        <mat-label>Type:</mat-label>
+        <mat-radio-button value="paid">Paid</mat-radio-button>
+        <mat-radio-button value="not-paid" [checked]="true"
+          >Not paid</mat-radio-button
+        >
+      </mat-radio-group>
+
+      <mat-radio-group
+        aria-label="Select an option"
+        formControlName="entitled"
+        class="horizontal-group"
+      >
+        <mat-label>Entitled:</mat-label>
+        <mat-radio-button value="through-balance"
+          >Through balance</mat-radio-button
+        >
+        <mat-radio-button value="event-based">Event based</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group
+        aria-label="Select an option"
+        formControlName="docsRequired"
+        class="horizontal-group"
+      >
+        <mat-label>Docs Required:</mat-label>
+        <mat-radio-button [value]="true">Yes</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group
+        aria-label="Select an option"
+        formControlName="gracePeriod"
+        class="horizontal-group"
+      >
+        <mat-label>Grace Period:</mat-label>
+        <mat-radio-button [value]="true">Yes</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group
+        aria-label="Select an option"
+        formControlName="dispute"
+        class="horizontal-group"
+      >
+        <mat-label>Dispute:</mat-label>
+        <mat-radio-button [value]="true">Yes</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group
+        aria-label="Select an option"
+        formControlName="validity"
+        class="horizontal-group"
+      >
+        <mat-label>Validity:</mat-label>
+        <mat-radio-button value="limited">Limited</mat-radio-button>
+        <mat-radio-button value="unlimited">Unlimited</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="select-inputs">
+      <div class="horizontal-group">
+        <mat-label class="vertically-aligned-label">Unit:</mat-label>
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Select</mat-label>
+          <mat-select matInput required formControlName="unit">
+            @for (elem of unitOptions; track elem.name){
+            <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
+            }
+          </mat-select>
+
+          @if (formGroup().get('unit')?.hasError('required')) {
+          <mat-error><strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="horizontal-group">
+        <mat-label class="vertically-aligned-label">Gender:</mat-label>
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Select</mat-label>
+          <mat-select matInput required formControlName="gender">
+            @for (elem of unitOptions; track elem.name){
+            <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
+            }
+          </mat-select>
+
+          @if (formGroup().get('gender')?.hasError('required')) {
+          <mat-error><strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="horizontal-group">
+        <mat-label class="vertically-aligned-label">Employment type:</mat-label>
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Select</mat-label>
+          <mat-select matInput required formControlName="employementType">
+            @for (elem of employmentTypeOptions; track elem.name){
+            <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
+            }
+          </mat-select>
+
+          @if (formGroup().get('employementType')?.hasError('required')) {
+          <mat-error><strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
