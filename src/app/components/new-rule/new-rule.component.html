@@ -1,6 +1,6 @@
 <h2>Rules Engine > Leave Types - Jordan > Create New</h2>
 
-<form [formGroup]="ruleForm" (ngOnSubmit)="onSubmit()">
+<form [formGroup]="ruleForm" (ngSubmit)="onSubmit()">
   <div class="sections-container">
     <div class="name-input-container section-container">
       <h2>Name</h2>
@@ -12,16 +12,16 @@
       </mat-form-field>
     </div>
 
-    <app-basic-info [formGroup]="ruleForm.controls.basicInfo" />
+    <app-basic-info [(formState)]="formState" formGroupName="basicInfo" />
 
-    @if (entitledValue() !== null){
+    @if (formState() !== null){
 
-    <app-balance-input
-      [formGroup]="ruleForm.controls.balance"
-      [entitledValue]="entitledValue()"
-    ></app-balance-input>
-    } @if (entitledValue() === 'through-balance') {
-    <app-consumption [formGroup]="ruleForm.controls.consumption" />
+    <app-balance
+      formGroupName="balance"
+      [entitledValue]="formState()"
+    ></app-balance>
+    } @if (formState() === 'through-balance') {
+    <app-consumption formGroupName="consumption" />
 
     }
 

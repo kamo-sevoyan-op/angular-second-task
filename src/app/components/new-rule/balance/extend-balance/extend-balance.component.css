@@ -1,0 +1,13 @@
+.balance-conditions-inner {
+  display: flex;
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  flex-direction: row;
+  align-items: start;
+  background-color: #fafafa;
+}
+
+.balance-input {
+  width: 20%;
+}

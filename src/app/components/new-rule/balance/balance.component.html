@@ -1,11 +1,11 @@
-<div class="section-container balance-container" [formGroup]="formGroup()">
+<div class="section-container balance-container" [formGroup]="form">
   <h2>Balance</h2>
 
   <app-coupled-input
     [options]="balanceUnitOptions"
     class="balance-input"
     label="Balance"
-    [formGroup]="formGroup().controls.balance"
+    formGroupName="balance"
   ></app-coupled-input>
 
   @if (entitledValue() === 'through-balance') {
@@ -13,40 +13,7 @@
     <mat-checkbox formControlName="conditionalCheckBox" [checked]="false">
       Conditional
     </mat-checkbox>
-    <div class="balance-conditions-inner" formGroupName="conditional">
-      <div class="balance-conditions-logic">
-        <mat-label class="vertically-aligned-label"
-          >Balance Conditions:</mat-label
-        >
-        <mat-form-field floatLabel="auto" appearance="outline">
-          <mat-select matInput required formControlName="conditionType">
-            @for (elem of conditionTypeOptions; track elem.name){
-            <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
-            }
-          </mat-select>
-
-          @if
-          (formGroup().get('conditional.conditionType')?.hasError('required')) {
-          <mat-error><strong>required</strong></mat-error>
-          }
-        </mat-form-field>
-
-        <app-coupled-input
-          [options]="balanceUnitOptions"
-          class="balance-input"
-          [formGroup]="
-            formGroup().controls.conditional.controls.conditionalBalance
-          "
-        ></app-coupled-input>
-      </div>
-
-      <app-coupled-input
-        [options]="balanceUnitOptions"
-        class="balance-input"
-        label="Balance"
-        [formGroup]="formGroup().controls.conditional.controls.balance"
-      ></app-coupled-input>
-    </div>
+    <app-conditional-balance formGroupName="conditional" />
   </div>
   }
 
@@ -54,14 +21,7 @@
     <mat-checkbox formControlName="extendCheckBox" [checked]="false">
       Extend Balance
     </mat-checkbox>
-    <div class="balance-conditions-inner" formGroupName="extend">
-      <app-coupled-input
-        [options]="balanceUnitOptions"
-        class="balance-input"
-        label="Extended Balance"
-        [formGroup]="formGroup().controls.extend.controls.balance"
-      ></app-coupled-input>
-    </div>
+    <app-extend-balance formGroupName="extend"/>
   </div>
 
   <mat-checkbox formControlName="canBeOveridden">
@@ -79,7 +39,7 @@
           }
         </mat-select>
 
-        @if (formGroup().get('frequency.frequency')?.hasError('required')) {
+        @if (form.get('frequency.frequency')?.hasError('required')) {
         <mat-error><strong>required</strong></mat-error>
         }
       </mat-form-field>
@@ -100,7 +60,7 @@
 
         <mat-datepicker #picker></mat-datepicker>
 
-        @if (formGroup().get('frequency.start')?.hasError('required')) {
+        @if (form.get('frequency.start')?.hasError('required')) {
         <mat-error><strong>required</strong></mat-error>
         }
       </mat-form-field>

@@ -1,5 +1,9 @@
-import { Component, input } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, input, OnInit } from '@angular/core';
+import {
+  FormGroup,
+  FormGroupDirective,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule, MatOption } from '@angular/material/core';
@@ -9,10 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelect } from '@angular/material/select';
 import { CoupledInputComponent } from '../coupled-input/coupled-input.component';
+import { ConditionalBalanceComponent } from './conditional-balance/conditional-balance.component';
+import { ExtendBalanceComponent } from './extend-balance/extend-balance.component';
 export type Option = { name: string; value: string };
 
 @Component({
-  selector: 'app-balance-input',
+  selector: 'app-balance',
   standalone: true,
   imports: [
     MatFormField,
@@ -27,66 +33,26 @@ export type Option = { name: string; value: string };
     MatDatepickerModule,
     MatNativeDateModule,
     CoupledInputComponent,
+    ConditionalBalanceComponent,
+    ExtendBalanceComponent,
   ],
   templateUrl: './balance.component.html',
   styleUrl: './balance.component.css',
 })
-export class BalanceInputComponent {
-  formGroup = input.required<
-    FormGroup<{
-      balance: FormGroup<{
-        value: FormControl<number | null>;
-        unit: FormControl<string | null>;
-      }>;
-
-      conditionalCheckBox: FormControl<boolean | null>;
-
-      conditional: FormGroup<{
-        conditionType: FormControl<string | null>;
-        conditionalBalance: FormGroup<{
-          value: FormControl<number | null>;
-          unit: FormControl<string | null>;
-        }>;
-        balance: FormGroup<{
-          value: FormControl<number | null>;
-          unit: FormControl<string | null>;
-        }>;
-      }>;
-
-      extendCheckBox: FormControl<boolean | null>;
-
-      extend: FormGroup<{
-        balance: FormGroup<{
-          value: FormControl<number | null>;
-          unit: FormControl<string | null>;
-        }>;
-      }>;
-
-      canBeOveridden: FormControl<boolean | null>;
-
-      frequency: FormGroup<{
-        frequency: FormControl<string | null>;
-        start: FormControl<Date | null>;
-      }>;
-    }>
-  >();
+export class BalanceInputComponent implements OnInit {
+  formGroupName = input.required<string>();
+  form!: FormGroup;
 
   balanceUnitOptions: Option[];
-  conditionTypeOptions: Option[];
   frequencyOptions: Option[];
 
   entitledValue = input.required<string | null>();
 
-  constructor() {
+  constructor(private rootFormGroup: FormGroupDirective) {
     this.balanceUnitOptions = [
       { name: 'Days', value: 'days' },
       { name: 'Years', value: 'years' },
       { name: 'Months', value: 'months' },
-    ];
-
-    this.conditionTypeOptions = [
-      { name: 'Greather than', value: 'greather-than' },
-      { name: 'Lesser than', value: 'lesser-than' },
     ];
 
     this.frequencyOptions = [
@@ -94,5 +60,31 @@ export class BalanceInputComponent {
       { name: 'Monthly', value: 'monthly' },
       { name: 'Once', value: 'once' },
     ];
+  }
+
+  ngOnInit() {
+    this.form = this.rootFormGroup.control.get(
+      this.formGroupName()
+    ) as FormGroup;
+
+    this.form.get('conditionalCheckBox')?.valueChanges.subscribe((value) => {
+      const control = this.form.get('conditional');
+      if (!value) {
+        control?.reset();
+        control?.disable();
+      } else {
+        control?.enable();
+      }
+    });
+
+    this.form.get('extendCheckBox')?.valueChanges.subscribe((value) => {
+      const control = this.form.get('extend');
+      if (!value) {
+        control?.reset();
+        control?.disable();
+      } else {
+        control?.enable();
+      }
+    });
   }
 }

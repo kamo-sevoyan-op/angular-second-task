@@ -1,4 +1,4 @@
-<div class="section-container consumption-container" [formGroup]="formGroup()">
+<div class="section-container consumption-container" [formGroup]="form">
   <h2>Consumption</h2>
 
   <mat-radio-group
@@ -37,7 +37,7 @@
         }
       </mat-select>
 
-      @if (formGroup().get('frequencyNumber')?.hasError('required')) {
+      @if (form.get('frequencyNumber')?.hasError('required')) {
       <mat-error><strong>required</strong></mat-error>
       }
     </mat-form-field>

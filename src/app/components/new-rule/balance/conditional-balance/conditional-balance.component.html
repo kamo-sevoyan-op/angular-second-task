@@ -1,0 +1,29 @@
+<div class="balance-conditions-inner" [formGroup]="form">
+  <div class="balance-conditions-logic">
+    <mat-label class="vertically-aligned-label">Balance Conditions:</mat-label>
+    <mat-form-field floatLabel="auto" appearance="outline">
+      <mat-select matInput required formControlName="conditionType">
+        @for (elem of conditionTypeOptions; track elem.name){
+        <mat-option [value]="elem.value">{{ elem.name }}</mat-option>
+        }
+      </mat-select>
+
+      @if (form.get('conditional.conditionType')?.hasError('required')) {
+      <mat-error><strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+
+    <app-coupled-input
+      [options]="balanceUnitOptions"
+      class="balance-input"
+      formGroupName="conditionalBalance"
+    ></app-coupled-input>
+  </div>
+
+  <app-coupled-input
+    [options]="balanceUnitOptions"
+    class="balance-input"
+    label="Balance"
+    formGroupName="balance"
+  ></app-coupled-input>
+</div>

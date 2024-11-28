@@ -1,5 +1,10 @@
-import { Component, input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, input, model, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -30,15 +35,18 @@ export type Option = { name: string; value: string };
   templateUrl: './basic-info.component.html',
   styleUrl: './basic-info.component.css',
 })
-export class BasicInfoComponent {
-  formGroup = input.required<FormGroup>();
+export class BasicInfoComponent implements OnInit {
+  formState = model<string | null>(null);
+
+  formGroupName = input.required<string>();
+  form!: FormGroup;
 
   unitOptions: Option[];
   genderOptions: Option[];
   consumptionOptions: Option[];
   employmentTypeOptions: Option[];
 
-  constructor() {
+  constructor(private rootFormGroup: FormGroupDirective) {
     this.unitOptions = [
       { name: 'Days', value: 'days' },
       { name: 'Hours', value: 'hours' },
@@ -61,5 +69,26 @@ export class BasicInfoComponent {
       { name: 'Full Time', value: 'full-time' },
       { name: 'Part Time', value: 'part-time' },
     ];
+  }
+
+  ngOnInit() {
+    this.form = this.rootFormGroup.control.get(
+      this.formGroupName()
+    ) as FormGroup;
+
+    this.form.get('type')?.valueChanges.subscribe((value) => {
+      const control = this.form.get('entitled');
+      if (value === 'not-paid') {
+        control?.disable();
+        control?.setValue(null);
+      } else {
+        control?.enable();
+        control?.setValue('event-based');
+      }
+    });
+
+    this.form.get('entitled')?.valueChanges.subscribe((value) => {
+      this.formState.set(value);
+    });
   }
 }
