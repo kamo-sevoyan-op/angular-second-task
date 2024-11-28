@@ -6,18 +6,12 @@ tr:not(.mat-mdc-header-row) {
   height: 5rem;
 }
 
-.mat-column-module,
-.mat-column-country {
-  text-align: center;
-}
-
-.mat-column-actions:not(.mat-mdc-header-cell) {
-  text-align: right;
-}
-
 .mat-mdc-header-row {
-  background: #dddddd;
-  border-radius: 0.5rem 0.5rem 0 0 !important;
+  background: #000000;
+}
+
+.mat-mdc-header-row > th {
+  color: white;
 }
 
 .mat-mdc-header-cell:first-child {
