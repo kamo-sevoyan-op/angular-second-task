@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav opened="opened" mode="side" position="start">
+  <mat-sidenav [opened]="!toggled()" mode="side" position="start" >
     @for (navigation of navigations; track navigation.name){
     <div
       class="sidebar-element"

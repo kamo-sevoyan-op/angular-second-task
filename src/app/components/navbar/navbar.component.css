@@ -1,5 +1,5 @@
 mat-toolbar {
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   height: 5rem;
   padding: 1rem 3rem;
 }
@@ -29,10 +29,6 @@ mat-toolbar {
   border-radius: 2rem;
 
   background-color: #dddddd;
-}
-
-.navbar-container > h1 {
-  font-size: 3rem;
 }
 
 .navbar-admin-container {

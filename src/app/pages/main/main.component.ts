@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 
@@ -9,4 +9,11 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
   templateUrl: './main.component.html',
   styleUrl: './main.component.css',
 })
-export class MainpageComponent {}
+export class MainpageComponent {
+
+  sidebarToggled = signal<boolean>(false);
+
+  chageSidebarState(){
+    this.sidebarToggled.update(x => !x);
+  }
+}

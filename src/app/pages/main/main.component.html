@@ -1,2 +1,2 @@
-<app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
+<app-navbar (menuClicked)="chageSidebarState()"></app-navbar>
+<app-sidebar [toggled]="sidebarToggled()"></app-sidebar>
