@@ -1,7 +1,9 @@
 mat-toolbar {
-  background-color: #e8e8e8;
+  background-color: #ffffff;
   height: 5rem;
   padding: 1rem;
+
+  border: 1px solid #e8e8e8;
 }
 
 .navbar-container {
