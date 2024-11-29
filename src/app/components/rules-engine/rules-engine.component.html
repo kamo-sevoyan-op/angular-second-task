@@ -1,25 +1,4 @@
-<div class="toolbar-container">
-  <h2>{{ headingText }}</h2>
-
-  <div class="search-container">
-    <mat-form-field
-      appearance="outline"
-      subscriptSizing="dynamic"
-    >
-      <mat-label>Search</mat-label>
-      <input matInput type="search" />
-      <button matPrefix mat-icon-button aria-label="Search" extended>
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
-
-    <button type="button" mat-stroked-button>
-      <mat-icon>tune</mat-icon>
-      <span>Filter</span>
-    </button>
-  </div>
-</div>
-
+<app-page-heading headingText="Rules Engine"></app-page-heading>
 <app-data-table [tableColumns]="tableColumns()" [tableData]="data" />
 
 <!-- Define the columns of the table -->

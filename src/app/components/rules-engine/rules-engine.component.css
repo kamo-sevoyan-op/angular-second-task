@@ -3,26 +3,3 @@
   border-right: 1px solid currentColor;
   text-align: left;
 }
-
-.toolbar-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.search-container {
-  display: flex;
-  height: max-content;
-  column-gap: 1rem;
-  align-items: stretch;
-}
-
-.mdc-text-field--outlined {
-  --mdc-outlined-text-field-container-shape: 0.5rem;
-}
-
-.mdc-button--outlined {
-  --mdc-outlined-button-container-height: auto;
-  --mdc-outlined-button-container-shape: 0.5rem;
-}

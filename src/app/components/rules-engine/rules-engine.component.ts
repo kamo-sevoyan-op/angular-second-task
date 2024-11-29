@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PageHeadingComponent } from '../../shared/page-heading/page-heading.component';
 
 @Component({
   selector: 'app-rules-engine',
@@ -30,9 +31,8 @@ import { MatInputModule } from '@angular/material/input';
     MatMenuModule,
     RouterModule,
     CommonModule,
-    MatFormField,
-    MatLabel,
-    MatInputModule
+    MatInputModule,
+    PageHeadingComponent,
   ],
   templateUrl: './rules-engine.component.html',
   styleUrl: './rules-engine.component.css',

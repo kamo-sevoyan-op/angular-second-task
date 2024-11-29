@@ -19,6 +19,7 @@ import { RuleService } from '../../services/rule.service';
 import { RulesEngineService } from '../../services/rules-engine.service';
 import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
+import { PageHeadingComponent } from '../../shared/page-heading/page-heading.component';
 
 @Component({
   selector: 'app-rule',
@@ -31,6 +32,7 @@ import { MatInputModule } from '@angular/material/input';
     RouterModule,
     MatIconModule,
     MatInputModule,
+    PageHeadingComponent
   ],
   templateUrl: './rule.component.html',
   styleUrl: './rule.component.css',
