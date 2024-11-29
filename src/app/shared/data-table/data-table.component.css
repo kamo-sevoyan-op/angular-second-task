@@ -22,10 +22,6 @@ tr:not(.mat-mdc-header-row) {
   border-radius: 0 0.5rem 0 0;
 }
 
-.mat-mdc-paginator {
-  background-color: transparent;
-}
-
 .mat-mdc-table.mdc-data-table__table.cdk-table {
   border-bottom: 2px solid #eeeeee;
 }
