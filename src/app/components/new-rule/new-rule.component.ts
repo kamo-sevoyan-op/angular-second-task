@@ -170,7 +170,6 @@ export class NewRuleComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.ruleForm.value);
   }
 
   ngOnInit(): void {

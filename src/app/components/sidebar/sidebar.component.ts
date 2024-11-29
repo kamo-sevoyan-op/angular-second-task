@@ -50,7 +50,6 @@ export class SidebarComponent {
 
     for (const navigation of this.navigations) {
       const url = `/icons/${navigation.iconName}.svg`;
-      console.log(url);
       iconRegistry.addSvgIcon(
         navigation.iconName,
         sanitizer.bypassSecurityTrustResourceUrl(url)
