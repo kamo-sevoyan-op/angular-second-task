@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RuleService } from '../../services/rule.service';
 import { RulesEngineService } from '../../services/rules-engine.service';
 import { RouterModule } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-rule',
@@ -28,6 +29,8 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatMenuModule,
     RouterModule,
+    MatIconModule,
+    MatInputModule,
   ],
   templateUrl: './rule.component.html',
   styleUrl: './rule.component.css',

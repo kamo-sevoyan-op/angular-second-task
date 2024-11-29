@@ -16,6 +16,8 @@ import { CountryIconComponent } from './country-icon/country-icon.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-rules-engine',
@@ -28,6 +30,9 @@ import { CommonModule } from '@angular/common';
     MatMenuModule,
     RouterModule,
     CommonModule,
+    MatFormField,
+    MatLabel,
+    MatInputModule
   ],
   templateUrl: './rules-engine.component.html',
   styleUrl: './rules-engine.component.css',

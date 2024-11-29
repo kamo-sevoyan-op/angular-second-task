@@ -5,13 +5,9 @@ import {
   DestroyRef,
   inject,
   input,
-  OnChanges,
   OnInit,
-  Signal,
-  SimpleChanges,
   TrackByFunction,
   ViewChild,
-  ViewEncapsulation,
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
@@ -38,7 +34,6 @@ import { MatInputModule } from '@angular/material/input';
   ],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css',
-  // encapsulation: ViewEncapsulation.None
 })
 export class DataTableComponent<T extends { id: number }>
   implements AfterViewInit, OnInit

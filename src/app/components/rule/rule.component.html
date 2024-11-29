@@ -3,11 +3,32 @@
   Rules engine with <strong>{{ rulesEngineId() }}</strong> does not exist.
 </h1>
 } @else {
-<div class="space-between">
-  <h2>Rules Engine > {{ name() }}-{{ countryName }}</h2>
-  <button mat-button extended id="create-new-button"  [routerLink]="['new-rule']">
-    <mat-icon class="plus-icon">add</mat-icon> Create New
-  </button>
+
+<div class="toolbar-container">
+  <h2>Rules Engine</h2>
+
+  <div class="search-container">
+    <mat-form-field
+      appearance="outline"
+      subscriptSizing="dynamic"
+      class="search-input"
+    >
+      <mat-label>Search</mat-label>
+      <input matInput type="search" />
+      <button matPrefix mat-icon-button aria-label="Search" extended>
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button type="button" mat-stroked-button class="filter-button">
+      <mat-icon>tune</mat-icon>
+      <span>Filter</span>
+    </button>
+
+    <button type="button" mat-flat-button [routerLink]="['new-rule']">
+      <mat-icon class="plus-icon">add</mat-icon> Create New
+    </button>
+  </div>
 </div>
 
 <app-data-table [tableColumns]="tableColumns()" [tableData]="data()" />
