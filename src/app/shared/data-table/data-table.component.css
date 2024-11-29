@@ -26,9 +26,10 @@ tr:not(.mat-mdc-header-row) {
   background-color: transparent;
 }
 
-.mat-mdc-cell {
+.mat-mdc-table.mdc-data-table__table.cdk-table {
   border-bottom: 2px solid #eeeeee;
 }
+
 .mat-mdc-cell:first-child {
   border-left: 2px solid #eeeeee;
 }
@@ -38,8 +39,4 @@ tr:not(.mat-mdc-header-row) {
 
 .mat-mdc-form-field {
   width: calc(100% / 3);
-}
-
-.mat-mdc-table {
-  background-color: transparent;
 }
