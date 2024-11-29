@@ -4,7 +4,6 @@
     mode="side"
     position="start"
     fixedInViewport="false"
-    [ngStyle]="{ padding: toggled() ? '1rem' : '1rem 0' }"
   >
     <mat-list class="sidenav-items-container">
       @for (navigation of navigations; track navigation.name){
@@ -15,7 +14,9 @@
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
         [ngClass]="{ 'toggled-active-link': toggled() && rla.isActive }"
-        [ngStyle]="{ 'padding-left': toggled() ? '1rem' : '2rem' }"
+        [ngStyle]="{
+          padding: toggled() ? '1rem 2rem' : ' 1rem 1rem 1rem 2rem'
+        }"
       >
         <mat-icon
           [svgIcon]="navigation.iconName"
