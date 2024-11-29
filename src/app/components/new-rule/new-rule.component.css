@@ -29,3 +29,16 @@
 .button-container > button {
   padding: 1rem 3rem;
 }
+
+.name-input-with-button {
+  display: flex;
+  align-items: baseline;
+}
+
+.mdc-button--unelevated {
+  --mdc-filled-button-container-height: auto;
+}
+
+.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
+  transform: scale(1.75);
+}
