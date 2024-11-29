@@ -22,8 +22,11 @@
 
 .button-container {
   display: flex;
+
+  height: 39px;
   width: max-content;
   column-gap: 1rem;
+  align-items: stretch;
 }
 
 .button-container > button {
@@ -35,10 +38,15 @@
   align-items: baseline;
 }
 
-.mdc-button--unelevated {
-  --mdc-filled-button-container-height: auto;
-}
-
 .mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
   transform: scale(1.75);
+}
+
+.mdc-button--unelevated {
+  --mdc-filled-button-container-height: auto;
+  --mdc-filled-button-container-shape: 0.5rem;
+}
+
+.mdc-button--outlined {
+  --mdc-outlined-button-container-height: auto;
 }
