@@ -33,8 +33,6 @@ export class CoupledInputComponent implements OnInit {
   constructor(private rootFormGroup: FormGroupDirective) {}
 
   ngOnInit(): void {
-    console.log(this.rootFormGroup);
-
     this.form = this.rootFormGroup.control.get(
       this.formGroupName()
     ) as FormGroup;

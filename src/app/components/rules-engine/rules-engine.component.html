@@ -1,5 +1,4 @@
-<h2>{{ headingText }}</h2>
-
+<app-page-heading headingText="Rules Engine"></app-page-heading>
 <app-data-table [tableColumns]="tableColumns()" [tableData]="data" />
 
 <!-- Define the columns of the table -->
@@ -8,7 +7,7 @@
 </ng-template>
 
 <ng-template #moduleTemplate let-module>
-  <span class="rounded">{{ module }}</span>
+  <p>{{ module }}</p>
 </ng-template>
 
 <ng-template #actionsTemplate let-ruleEngineId="row.id">

@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { BalanceInputComponent } from './balance/balance.component';
 import { ConsumptionComponent } from './consumption/consumption.component';
+import { MatIcon } from '@angular/material/icon';
 
 export type Option = { name: string; value: string };
 
@@ -20,6 +21,7 @@ export type Option = { name: string; value: string };
     BasicInfoComponent,
     BalanceInputComponent,
     ConsumptionComponent,
+    MatIcon
   ],
   templateUrl: './new-rule.component.html',
   styleUrl: './new-rule.component.css',
@@ -168,7 +170,6 @@ export class NewRuleComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.ruleForm.value);
   }
 
   ngOnInit(): void {

@@ -1,15 +1,23 @@
-<h2>Rules Engine > Leave Types - Jordan > Create New</h2>
-
 <form [formGroup]="ruleForm" (ngSubmit)="onSubmit()">
   <div class="sections-container">
     <div class="name-input-container section-container">
       <h2>Name</h2>
-      <mat-form-field floatLabel="auto" appearance="outline" class="full-width">
-        <input type="text" matInput required formControlName="name" />
-        @if (ruleForm.controls.name.hasError('required')) {
-        <mat-error>Name is <strong>required</strong></mat-error>
-        }
-      </mat-form-field>
+
+      <div class="name-input-with-button">
+        <mat-form-field
+          floatLabel="auto"
+          appearance="outline"
+          class="full-width"
+        >
+          <input type="text" matInput required formControlName="name" />
+          @if (ruleForm.controls.name.hasError('required')) {
+          <mat-error>Name is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <button type="button" mat-flat-button>
+          <mat-icon>language</mat-icon>
+        </button>
+      </div>
     </div>
 
     <app-basic-info [(formState)]="formState" formGroupName="basicInfo" />
@@ -26,8 +34,7 @@
     }
 
     <div class="button-container">
-      <button type="button" mat-button extended>Cancel</button>
-      <button type="button" mat-stroked-button extended>Save as draft</button>
+      <button type="button" mat-flat-button extended>Cancel</button>
       <button
         mat-flat-button
         extended
@@ -36,6 +43,7 @@
       >
         Create
       </button>
+      <button type="button" mat-stroked-button extended>Save as draft</button>
     </div>
   </div>
 </form>

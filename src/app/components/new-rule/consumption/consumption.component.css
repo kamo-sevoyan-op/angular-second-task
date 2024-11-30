@@ -1,6 +1,6 @@
 .section-container {
   padding: 1rem 2rem 1rem 2rem;
-  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
 }
 

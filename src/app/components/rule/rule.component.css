@@ -5,10 +5,10 @@
   align-items: center;
 }
 
-#create-new-button {
-  width: 12rem;
-  height: 2.5rem;
-
-  color: white;
-  background-color: #999999;
+.mdc-button--unelevated {
+  --mdc-filled-button-label-text-color: #ffffff;
+  --mdc-filled-button-container-color: #000000;
+  --mdc-filled-button-container-shape: 0.5rem;
+  --mdc-filled-button-container-height: auto;
+  --mdc-filled-button-label-text-size: 1.5rem;
 }

@@ -3,12 +3,12 @@
   Rules engine with <strong>{{ rulesEngineId() }}</strong> does not exist.
 </h1>
 } @else {
-<div class="space-between">
-  <h2>Rules Engine > {{ name() }}-{{ countryName }}</h2>
-  <button mat-button extended id="create-new-button"  [routerLink]="['new-rule']">
+
+<app-page-heading headingText="Rules Engine">
+  <button type="button" mat-flat-button [routerLink]="['new-rule']">
     <mat-icon class="plus-icon">add</mat-icon> Create New
   </button>
-</div>
+</app-page-heading>
 
 <app-data-table [tableColumns]="tableColumns()" [tableData]="data()" />
 }

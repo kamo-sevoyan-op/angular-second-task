@@ -1,7 +1,10 @@
 mat-toolbar {
-  background-color: #E8E8E8;
-  height: 5rem;
-  padding: 1rem 3rem;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  height: 6rem;
+  padding: 1rem 1.5rem 1rem 1rem;
+
+  border: 1px solid #e8e8e8;
 }
 
 .navbar-container {
@@ -10,29 +13,6 @@ mat-toolbar {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-.navbar-inner-container {
-  box-sizing: border-box;
-  display: flex;
-  column-gap: 3rem;
-
-  width: calc(100% - 15rem + 3rem);
-  padding-left: 2rem;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.empty-bar {
-  width: 35rem;
-  height: 2rem;
-  border-radius: 2rem;
-
-  background-color: #dddddd;
-}
-
-.navbar-container > h1 {
-  font-size: 3rem;
 }
 
 .navbar-admin-container {
@@ -46,7 +26,7 @@ mat-toolbar {
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
-  background-color: white;
+  background-color: gainsboro;
 }
 
 .admin-title,
@@ -56,5 +36,9 @@ mat-toolbar {
 }
 
 .admin-name {
-  color: #aaaaaa;
+  color: #a4a4a4;
+}
+
+.mat-icon.notranslate.larger.mat-icon-no-color {
+  transform: scale(2);
 }

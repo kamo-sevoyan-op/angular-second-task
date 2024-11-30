@@ -1,16 +1,18 @@
 <mat-toolbar>
-  <div class="navbar-container">
-    <h1>Olive</h1>
+  <button mat-icon-button (click)="onMenuClicked()">
+    <mat-icon>menu</mat-icon>
+  </button>
 
-    <div class="navbar-inner-container">
-      <div class="empty-bar">
-      </div>
-      <div class="navbar-admin-container">
-        <div class="empty-avatar"></div>
-        <div class="admin-information">
-          <p class="admin-title">Admin Name</p>
-          <p class="admin-name">Admin</p>
-        </div>
+  <div class="navbar-container">
+    <h1 style="letter-spacing: 1px;">OLIVE</h1>
+    <div class="navbar-admin-container">
+      <button mat-icon-button>
+        <mat-icon svgIcon="app-bell-icon" class="larger"></mat-icon>
+      </button>
+      <div class="empty-avatar"></div>
+      <div class="admin-information">
+        <p class="admin-title">Admin Name</p>
+        <p class="admin-name">Admin</p>
       </div>
     </div>
   </div>

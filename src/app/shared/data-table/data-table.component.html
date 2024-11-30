@@ -1,13 +1,3 @@
-<div class="right-align">
-  <mat-form-field appearance="outline">
-    <mat-label>Search</mat-label>
-    <input matInput type="search" />
-    <button matSuffix mat-icon-button aria-label="Search">
-      <mat-icon>search</mat-icon>
-    </button>
-  </mat-form-field>
-</div>
-
 <table mat-table [dataSource]="dataSource" [trackBy]="identity">
   @for (column of tableColumns(); track column.value) {
 
@@ -38,9 +28,7 @@
   showFirstLastButtons
   aria-label="Select page"
   [pageSize]="5"
-  appCustomPagination
+  leanPaginator
   [length]="dataSource.data.length"
-  [appCustomLength]="dataSource.data.length"
-  [renderButtonsNumber]="1"
 >
 </mat-paginator>

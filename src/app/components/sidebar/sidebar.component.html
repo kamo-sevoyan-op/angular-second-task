@@ -1,16 +1,36 @@
-<mat-sidenav-container>
-  <mat-sidenav opened="opened" mode="side" position="start">
-    @for (navigation of navigations; track navigation.name){
-    <div
-      class="sidebar-element"
-      [routerLink]="navigation.link"
-      routerLinkActive="active-link"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <span>{{ navigation.name }}</span>
-    </div>
-    }
+<mat-sidenav-container autosize>
+  <mat-sidenav
+    [opened]="true"
+    mode="side"
+    position="start"
+    fixedInViewport="false"
+  >
+    <mat-list class="sidenav-items-container">
+      @for (navigation of navigations; track navigation.name){
+      <div
+        class="sidebar-element"
+        #rla="routerLinkActive"
+        [routerLink]="navigation.link"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [ngClass]="{ 'toggled-active-link': toggled() && rla.isActive }"
+        [ngStyle]="{
+          padding: toggled() ? '1rem 2rem' : ' 1rem 1rem 1rem 2rem'
+        }"
+      >
+        <mat-icon
+          [svgIcon]="navigation.iconName"
+          [matTooltip]="toggled() ? navigation.name : ''"
+          matTooltipPosition="right"
+        ></mat-icon>
+        @if (!toggled()) {
+        <span matLine>{{ navigation.name }}</span>
+        }
+      </div>
+      }
+    </mat-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <router-outlet />
   </mat-sidenav-content>

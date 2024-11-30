@@ -9,22 +9,27 @@ export const routes: Routes = [
   {
     path: '',
     component: MainpageComponent,
+    title: 'Olive Admin',
     children: [
       {
         path: 'rules-engine',
         component: RulesEngineComponent,
+        title: 'Rules Engine',
       },
       {
         path: 'rules-engine/:rulesEngineId',
-        component: RuleComponent
+        component: RuleComponent,
+        title: 'Rule',
       },
       {
         path: 'rules-engine/:rulesEngineId/new-rule',
-        component: NewRuleComponent
+        component: NewRuleComponent,
+        title: 'New Rule',
       },
       {
         path: '**',
         component: NotImplementedComponent,
+        title: 'Not Implemented',
       },
     ],
   },
